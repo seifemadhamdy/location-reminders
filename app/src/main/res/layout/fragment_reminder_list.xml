@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".locationreminders.reminderslist.ReminderListFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="seifemadhamdy.locationreminders.locationreminders.reminderslist.ReminderListViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/reminder_list_swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reminder_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:liveData="@{viewModel.remindersList}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/no_reminders_constraint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_normal"
+                android:fadeVisible="@{viewModel.showNoData.booleanValue()}">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/no_reminders_app_compat_image_view"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_baseline_notifications_off_24"
+                    app:layout_constraintBottom_toTopOf="@+id/no_reminders_description_material_text_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/no_reminders_title_material_text_view"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:layout_constraintWidth_percent="0.33333333333"
+                    app:tint="@color/material_on_surface_disabled" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/no_reminders_title_material_text_view"
+                    style="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_double"
+                    android:gravity="center"
+                    android:text="@string/no_reminders"
+                    android:textColor="@color/material_on_surface_emphasis_high_type"
+                    app:layout_constraintBottom_toTopOf="@+id/no_reminders_app_compat_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/no_reminders_description_material_text_view"
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_double"
+                    android:gravity="center"
+                    android:text="@string/your_saved_reminders_will_appear_here_after_you_add_them_via_the_button_with_the_plus_icon"
+                    android:textColor="@color/material_on_surface_emphasis_medium"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/no_reminders_app_compat_image_view"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_normal"
+                android:fadeVisible="@{viewModel.showLoading.booleanValue()}"
+                android:indeterminate="true" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_new_reminder_floating_action_button"
+                style="@style/Widget.Material3.FloatingActionButton.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/margin_normal"
+                android:backgroundTint="?colorSecondary"
+                android:contentDescription="@string/add_a_new_reminder"
+                android:src="@drawable/ic_baseline_add_24"
+                app:tint="?colorOnSecondary" />
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

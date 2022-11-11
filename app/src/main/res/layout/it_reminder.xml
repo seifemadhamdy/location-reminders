@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="seifemadhamdy.locationreminders.locationreminders.reminderslist.ReminderDataItem" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Filled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_normal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/title_app_compat_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:src="@drawable/ic_outline_title_24"
+                app:layout_constraintEnd_toStartOf="@+id/title_label_material_text_view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/material_on_surface_disabled" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_label_material_text_view"
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:alpha="@dimen/material_emphasis_disabled"
+                android:text="@string/title"
+                android:textColor="?colorOnSurface"
+                app:layout_constraintBottom_toTopOf="@+id/title_material_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/title_app_compat_image_view"
+                app:layout_constraintTop_toTopOf="@+id/title_app_compat_image_view"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_material_text_view"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:alpha="@dimen/material_emphasis_high_type"
+                android:text="@{item.title}"
+                android:textColor="?colorOnSurface"
+                app:layout_constraintEnd_toEndOf="@+id/title_label_material_text_view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/title_label_material_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/title_label_material_text_view"
+                tools:text="@string/title" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/title_material_divider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                app:dividerColor="@color/material_on_surface_disabled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/title_material_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/title_material_text_view" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/description_app_compat_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:src="@drawable/ic_outline_description_24"
+                app:layout_constraintEnd_toStartOf="@+id/description_label_material_text_view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title_material_divider"
+                app:tint="@color/material_on_surface_disabled" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/description_label_material_text_view"
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:alpha="@dimen/material_emphasis_disabled"
+                android:text="@string/description"
+                android:textColor="?colorOnSurface"
+                app:layout_constraintBottom_toTopOf="@+id/description_material_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/description_app_compat_image_view"
+                app:layout_constraintTop_toTopOf="@+id/description_app_compat_image_view"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/description_material_text_view"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:alpha="@dimen/material_emphasis_high_type"
+                android:text="@{item.description}"
+                android:textColor="?colorOnSurface"
+                app:layout_constraintEnd_toEndOf="@+id/description_label_material_text_view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/description_label_material_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/description_label_material_text_view"
+                tools:text="@string/description" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/description_material_divider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                app:dividerColor="@color/material_on_surface_disabled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/description_material_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/description_material_text_view" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/location_app_compat_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_normal"
+                android:src="@drawable/ic_outline_location_on_24"
+                app:layout_constraintEnd_toStartOf="@+id/location_label_material_text_view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description_material_divider"
+                app:tint="@color/material_on_surface_disabled" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/location_label_material_text_view"
+                style="@style/TextAppearance.Material3.LabelMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_normal"
+                android:alpha="@dimen/material_emphasis_disabled"
+                android:text="@string/location"
+                android:textColor="?colorOnSurface"
+                app:layout_constraintBottom_toTopOf="@+id/location_material_text_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/location_app_compat_image_view"
+                app:layout_constraintTop_toTopOf="@+id/location_app_compat_image_view"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/location_material_text_view"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:alpha="@dimen/material_emphasis_high_type"
+                android:text="@{item.location}"
+                android:textColor="?colorOnSurface"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/location_label_material_text_view"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/location_label_material_text_view"
+                app:layout_constraintTop_toBottomOf="@+id/location_label_material_text_view"
+                tools:text="@string/location" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

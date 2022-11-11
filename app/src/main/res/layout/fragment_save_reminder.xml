@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".locationreminders.savereminder.SaveReminderFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="seifemadhamdy.locationreminders.locationreminders.savereminder.SaveReminderViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/save_reminder_coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/save_reminder_nested_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadingEdgeLength="@dimen/margin_normal"
+            android:fillViewport="true"
+            android:requiresFadingEdge="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/title_app_compat_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_normal"
+                    android:src="@drawable/ic_outline_title_24"
+                    app:layout_constraintEnd_toStartOf="@+id/title_text_input_layout"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/material_on_surface_disabled" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/title_text_input_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:hint="@string/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/title_app_compat_image_view"
+                    app:layout_constraintTop_toTopOf="@+id/title_app_compat_image_view">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/title_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.reminderTitle}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/description_app_compat_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_double"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:src="@drawable/ic_outline_description_24"
+                    app:layout_constraintEnd_toStartOf="@+id/description_text_input_layout"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_text_input_layout"
+                    app:tint="@color/material_on_surface_disabled" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/description_text_input_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:hint="@string/description"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/description_app_compat_image_view"
+                    app:layout_constraintTop_toTopOf="@+id/description_app_compat_image_view">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/description_text_input_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@={viewModel.reminderDescription}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/locate_app_compat_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginTop="@dimen/margin_double"
+                    android:src="@drawable/ic_outline_location_on_24"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description_text_input_layout"
+                    app:tint="@color/material_on_surface_disabled" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/locate_material_button"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    android:text="@string/locate"
+                    android:textColor="?colorOnPrimary"
+                    app:backgroundTint="?colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/materialTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/materialTextView"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:strokeColor="?colorPrimary" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/materialTextView"
+                    style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_normal"
+                    android:ellipsize="marquee"
+                    android:isSelected="@{true}"
+                    android:singleLine="true"
+                    android:text="@{viewModel.reminderSelectedLocationStr}"
+                    android:textColor="@color/material_on_surface_emphasis_high_type"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/locate_app_compat_image_view"
+                    app:layout_constraintTop_toTopOf="@+id/locate_app_compat_image_view"
+                    tools:text="@string/no_location_is_selected" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_normal"
+            android:fadeVisible="@{viewModel.showLoading.booleanValue()}"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/save_reminder_floating_action_button"
+            style="@style/Widget.Material3.FloatingActionButton.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/margin_normal"
+            android:backgroundTint="?colorSecondary"
+            android:contentDescription="@string/save"
+            android:fadeVisible="@{!viewModel.showLoading.booleanValue()}"
+            android:src="@drawable/ic_baseline_save_24"
+            app:tint="?colorOnSecondary" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

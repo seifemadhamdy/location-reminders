@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".locationreminders.savereminder.selectreminderlocation.SelectLocationFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="seifemadhamdy.locationreminders.locationreminders.savereminder.SaveReminderViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/select_location_coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map_fragment_container_view"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/done_floating_action_button"
+            style="@style/Widget.Material3.FloatingActionButton.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/margin_normal"
+            android:backgroundTint="?colorSecondary"
+            android:contentDescription="@string/done"
+            android:src="@drawable/ic_baseline_done_24"
+            app:tint="?colorOnSecondary" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
