@@ -2,6 +2,7 @@ package seifemadhamdy.locationreminders.locationreminders
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,8 @@ import seifemadhamdy.locationreminders.locationreminders.reminderslist.ReminderD
  */
 class ReminderDescriptionActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityReminderDescriptionBinding
+
     companion object {
         private const val EXTRA_ReminderDataItem = "EXTRA_ReminderDataItem"
 
@@ -25,7 +28,6 @@ class ReminderDescriptionActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var binding: ActivityReminderDescriptionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,6 +36,22 @@ class ReminderDescriptionActivity : AppCompatActivity() {
             R.layout.activity_reminder_description
         )
 
-        // TODO: Add the implementation of the reminder details
+        // The implementation of the reminder details
+        binding.item = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            intent.extras?.getSerializable(
+                EXTRA_ReminderDataItem,
+                ReminderDataItem::class.java
+            ) as ReminderDataItem
+        } else {
+            @Suppress("DEPRECATION")
+            intent.extras?.get(EXTRA_ReminderDataItem) as ReminderDataItem
+        }
+
+        binding.lifecycleOwner = this
+
+        // Close activity when done
+        binding.doneFloatingActionButton.setOnClickListener {
+            finish()
+        }
     }
 }
