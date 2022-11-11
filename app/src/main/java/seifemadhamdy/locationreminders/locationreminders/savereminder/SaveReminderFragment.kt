@@ -14,6 +14,11 @@ import seifemadhamdy.locationreminders.utils.setDisplayHomeAsUpEnabled
 
 class SaveReminderFragment : BaseFragment() {
 
+    companion object {
+        internal const val ACTION_GEOFENCE_EVENT =
+            "SaveReminder.reminder.action.ACTION_GEOFENCE_EVENT"
+    }
+
     // Get the view model this time as a single to be shared with the another fragment
     override val viewModel: SaveReminderViewModel by inject()
     private lateinit var binding: FragmentSaveReminderBinding
