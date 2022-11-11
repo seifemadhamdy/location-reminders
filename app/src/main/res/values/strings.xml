@@ -28,4 +28,8 @@
     <string name="geofence_too_many_geofences">Your app has registered too many geofences.</string>
     <string name="geofence_too_many_pending_intents">You have provided too many PendingIntents to the addGeofences() call.</string>
     <string name="geofence_unknown_error">Unknown error: the Geofence service is not available now.</string>
+    <string name="permission_denied_explanation">You need to grant location permission in order to select the location.</string>
+    <string name="settings">Settings</string>
+    <string name="dropped_pin">Dropped Pin</string>
+    <string name="my_location">My location</string>
 </resources>
