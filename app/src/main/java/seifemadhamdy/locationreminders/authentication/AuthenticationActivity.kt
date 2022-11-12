@@ -18,6 +18,7 @@ import seifemadhamdy.locationreminders.locationreminders.RemindersActivity
  * signed in users to the RemindersActivity.
  */
 class AuthenticationActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityAuthenticationBinding
 
     private val signInLauncher = registerForActivityResult(

@@ -13,6 +13,7 @@ class ReminderListViewModel(
     app: Application,
     private val dataSource: ReminderDataSource
 ) : BaseViewModel(app) {
+
     // List that holds the reminder data to be displayed on the UI
     val remindersList = MutableLiveData<List<ReminderDataItem>>()
 

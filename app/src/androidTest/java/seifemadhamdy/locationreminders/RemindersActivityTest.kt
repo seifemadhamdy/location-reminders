@@ -43,6 +43,7 @@ import seifemadhamdy.locationreminders.utils.EspressoIdlingResource
 // END TO END test to black box test the app
 class RemindersActivityTest :
     AutoCloseKoinTest() {
+
     // Extended Koin Test - embed autoclose @after method to close Koin after every test
 
     private lateinit var reminderDataSource: ReminderDataSource

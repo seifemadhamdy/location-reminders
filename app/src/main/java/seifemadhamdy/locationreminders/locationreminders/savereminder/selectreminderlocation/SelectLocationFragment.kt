@@ -43,6 +43,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     // Use Koin to get the view model of the SaveReminder
     override val viewModel: SaveReminderViewModel by inject()
+
     private var marker: Marker? = null
     private val _tag = javaClass.simpleName
 

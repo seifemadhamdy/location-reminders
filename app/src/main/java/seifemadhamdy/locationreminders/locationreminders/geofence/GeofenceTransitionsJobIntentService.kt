@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package seifemadhamdy.locationreminders.locationreminders.geofence
 
 import android.content.Context
@@ -18,6 +20,7 @@ import seifemadhamdy.locationreminders.utils.sendNotification
 import kotlin.coroutines.CoroutineContext
 
 class GeofenceTransitionsJobIntentService : JobIntentService(), CoroutineScope {
+
     private var coroutineJob: Job = Job()
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.IO + coroutineJob

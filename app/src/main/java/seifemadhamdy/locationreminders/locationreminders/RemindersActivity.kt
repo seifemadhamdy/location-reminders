@@ -19,6 +19,7 @@ import seifemadhamdy.locationreminders.locationreminders.reminderslist.ReminderL
  * The RemindersActivity that holds the reminders fragments
  */
 class RemindersActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityRemindersBinding
     private val navController by lazy { (supportFragmentManager.findFragmentById(R.id.fragment_container_view) as NavHostFragment).navController }
 
