@@ -49,6 +49,8 @@ dependencies {
     def koin_test_version = '3.2.2'
     def firebase_version = '31.0.2'
     def firebase_ui_version = "8.0.2"
+    def arch_testing_version = '2.1.0'
+    def coroutines_version = "1.6.4"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -76,4 +78,6 @@ dependencies {
     implementation platform("com.google.firebase:firebase-bom:$firebase_version")
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
+    androidTestImplementation "androidx.arch.core:core-testing:$arch_testing_version"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
 }
