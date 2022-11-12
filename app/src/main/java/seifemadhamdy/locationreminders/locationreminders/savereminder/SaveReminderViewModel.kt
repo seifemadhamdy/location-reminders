@@ -46,7 +46,7 @@ class SaveReminderViewModel(val app: Application, private val dataSource: Remind
     /**
      * Save the reminder to the data source
      */
-    private fun saveReminder(reminderData: ReminderDataItem) {
+    fun saveReminder(reminderData: ReminderDataItem) {
         showLoading.value = true
 
         viewModelScope.launch {
@@ -83,4 +83,8 @@ class SaveReminderViewModel(val app: Application, private val dataSource: Remind
 
         return true
     }
+
+    // Get default text when no location is selected
+    fun getReminderSelectedLocationStrDefaultText() =
+        app.getString(R.string.no_location_is_selected)
 }
