@@ -34,7 +34,7 @@ class RemindersLocalRepositoryTest {
     private lateinit var remindersDatabase: RemindersDatabase
 
     @Before
-    fun setup() {
+    fun init() {
         // Using an in-memory database so that the information stored here disappears when the
         // process is killed.
 
@@ -50,12 +50,10 @@ class RemindersLocalRepositoryTest {
     }
 
     @After
-    fun cleanUp() {
-        remindersDatabase.close()
-    }
+    fun closeDb() = remindersDatabase.close()
 
     @Test
-    fun saveReminder_retreiveReminderByID() =
+    fun saveReminder_getReminderByID() =
         runBlocking {
             val reminder = ReminderDTO(
                 "Buy a New Backpack",
@@ -77,7 +75,7 @@ class RemindersLocalRepositoryTest {
         }
 
     @Test
-    fun deleteReminders_EmptyList() = runBlocking {
+    fun deleteReminders_emptyList() = runBlocking {
         remindersLocalRepository.saveReminder(
             ReminderDTO(
                 "Buy a New Backpack",
@@ -96,7 +94,7 @@ class RemindersLocalRepositoryTest {
     }
 
     @Test
-    fun retrieveReminderById_ReturnError() = runBlocking {
+    fun getReminderById_returnError() = runBlocking {
         val reminder = ReminderDTO(
             "Buy a New Backpack",
             "Make sure that the backpack's color is black.",

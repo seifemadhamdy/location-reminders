@@ -33,26 +33,29 @@ import java.util.*
 class DataBindingIdlingResource : IdlingResource {
 
     // List of registered callbacks
-    private val idlingCallbacks = mutableListOf<IdlingResource.ResourceCallback>()
+    private val resourceCallbacks = mutableListOf<IdlingResource.ResourceCallback>()
 
     // Give it a unique id to workaround an espresso bug where you cannot register/unregister
     // an idling resource w/ the same name.
-    private val id = UUID.randomUUID().toString()
+    private val uuid = UUID.randomUUID().toString()
 
     // Holds whether isIdle is called and the result was false. We track this to avoid calling
     // onTransitionToIdle callbacks if Espresso never thought we were idle in the first place.
     private var wasNotIdle = false
-    lateinit var activity: FragmentActivity
+    lateinit var fragmentActivity: FragmentActivity
 
-    override fun getName() = "DataBinding $id"
+    override fun getName() = "DataBinding $uuid"
 
     override fun isIdleNow(): Boolean {
-        val idle = !getBindings().any { it.hasPendingBindings() }
+        val idle = !getBindings().any {
+            it.hasPendingBindings()
+        }
 
-        @Suppress("LiftReturnOrAssignment") if (idle) {
+        @Suppress("LiftReturnOrAssignment")
+        if (idle) {
             if (wasNotIdle) {
                 // Notify observers to avoid espresso race detector
-                idlingCallbacks.forEach { it.onTransitionToIdle() }
+                resourceCallbacks.forEach { it.onTransitionToIdle() }
             }
 
             wasNotIdle = false
@@ -60,7 +63,7 @@ class DataBindingIdlingResource : IdlingResource {
             wasNotIdle = true
 
             // Check next frame
-            activity.findViewById<View>(android.R.id.content).postDelayed({
+            fragmentActivity.findViewById<View>(android.R.id.content).postDelayed({
                 isIdleNow
             }, 16)
         }
@@ -69,21 +72,24 @@ class DataBindingIdlingResource : IdlingResource {
     }
 
     override fun registerIdleTransitionCallback(callback: IdlingResource.ResourceCallback) {
-        idlingCallbacks.add(callback)
+        resourceCallbacks.add(callback)
     }
 
     /**
      * Find all binding classes in all currently available fragments.
      */
     private fun getBindings(): List<ViewDataBinding> {
-        val fragments = (activity as? FragmentActivity)?.supportFragmentManager?.fragments
+        val fragments = (fragmentActivity as? FragmentActivity)?.supportFragmentManager?.fragments
 
         val bindings = fragments?.mapNotNull {
             it.view?.getBinding()
         } ?: emptyList()
 
-        val childrenBindings = fragments?.flatMap { it.childFragmentManager.fragments }
-            ?.mapNotNull { it.view?.getBinding() } ?: emptyList()
+        val childrenBindings = fragments?.flatMap {
+            it.childFragmentManager.fragments
+        }?.mapNotNull {
+            it.view?.getBinding()
+        } ?: emptyList()
 
         return bindings + childrenBindings
     }
@@ -98,6 +104,6 @@ fun DataBindingIdlingResource.monitorActivity(
     activityScenario: ActivityScenario<out FragmentActivity>
 ) {
     activityScenario.onActivity {
-        this.activity = it
+        fragmentActivity = it
     }
 }

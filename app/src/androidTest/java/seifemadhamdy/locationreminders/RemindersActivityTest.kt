@@ -116,7 +116,7 @@ class RemindersActivityTest :
     }
 
     @Test
-    fun saveReminderScreen_showSnackBarTitleError() {
+    fun saveReminderFragment_showSnackBarNoTitleError() {
         val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
         dataBindingIdlingResource.monitorActivity(activityScenario)
         onView(withId(R.id.add_new_reminder_floating_action_button)).perform(ViewActions.click())
@@ -127,7 +127,7 @@ class RemindersActivityTest :
     }
 
     @Test
-    fun saveReminderScreen_showSnackBarLocationError() {
+    fun saveReminderFragment_showSnackBarNoLocationSelectedError() {
         val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
         dataBindingIdlingResource.monitorActivity(activityScenario)
         onView(withId(R.id.add_new_reminder_floating_action_button)).perform(ViewActions.click())
@@ -140,7 +140,7 @@ class RemindersActivityTest :
     }
 
     @Test
-    fun saveReminderScreen_showToastMessage() {
+    fun saveReminderFragment_showToastMessage() {
         val activityScenario = ActivityScenario.launch(RemindersActivity::class.java)
         dataBindingIdlingResource.monitorActivity(activityScenario)
         onView(withId(R.id.add_new_reminder_floating_action_button)).perform(ViewActions.click())

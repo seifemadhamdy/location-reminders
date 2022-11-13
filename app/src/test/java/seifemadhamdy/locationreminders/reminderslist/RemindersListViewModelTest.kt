@@ -35,33 +35,33 @@ class RemindersListViewModelTest {
     private lateinit var fakeDataSource: FakeDataSource
 
     // Subject under testing
-    private lateinit var viewModel: ReminderListViewModel
+    private lateinit var reminderListViewModel: ReminderListViewModel
 
     @Before
-    fun setupViewModel() {
+    fun build() {
         fakeDataSource = FakeDataSource()
-        viewModel =
+        reminderListViewModel =
             ReminderListViewModel(ApplicationProvider.getApplicationContext(), fakeDataSource)
     }
 
     @After
-    fun tearDown() {
+    fun destroy() {
         stopKoin()
     }
 
     @Test
-    fun loadReminders_showLoading() {
+    fun loadReminders_loadingStatus() {
         @Suppress("DEPRECATION")
         mainCoroutineRule.pauseDispatcher()
-        viewModel.loadReminders()
-        assertThat(viewModel.showLoading.getOrAwaitValue()).isTrue()
+        reminderListViewModel.loadReminders()
+        assertThat(reminderListViewModel.showLoading.getOrAwaitValue()).isTrue()
         @Suppress("DEPRECATION")
         mainCoroutineRule.resumeDispatcher()
-        assertThat(viewModel.showLoading.getOrAwaitValue()).isFalse()
+        assertThat(reminderListViewModel.showLoading.getOrAwaitValue()).isFalse()
     }
 
     @Test
-    fun loadReminders_remainderListNotEmpty(): Unit =
+    fun loadReminders_reminderListNotEmpty(): Unit =
         @Suppress("DEPRECATION")
         mainCoroutineRule.runBlockingTest {
             fakeDataSource.saveReminder(
@@ -73,18 +73,18 @@ class RemindersListViewModelTest {
                     31.40725133604065
                 )
             )
-            viewModel.loadReminders()
-            assertThat(viewModel.remindersList.getOrAwaitValue()).isNotEmpty()
+            reminderListViewModel.loadReminders()
+            assertThat(reminderListViewModel.remindersList.getOrAwaitValue()).isNotEmpty()
         }
 
     @Test
-    fun loadReminders_updateSnackBarValue() {
+    fun loadReminders_updateSnackBarShownValue() {
         @Suppress("DEPRECATION")
         mainCoroutineRule.pauseDispatcher()
-        fakeDataSource.setReturnError(true)
-        viewModel.loadReminders()
+        fakeDataSource.simulateError(true)
+        reminderListViewModel.loadReminders()
         @Suppress("DEPRECATION")
         mainCoroutineRule.resumeDispatcher()
-        assertThat(viewModel.showSnackBar.getOrAwaitValue()).isEqualTo("Error getting reminders.")
+        assertThat(reminderListViewModel.showSnackBar.getOrAwaitValue()).isEqualTo("Error getting reminders.")
     }
 }

@@ -13,6 +13,7 @@ fun <T> LiveData<T>.getOrAwaitValue(
     timeUnit: TimeUnit = TimeUnit.SECONDS,
     afterObserve: () -> Unit = {}
 ): T {
+
     var data: T? = null
     val latch = CountDownLatch(1)
 
@@ -24,7 +25,7 @@ fun <T> LiveData<T>.getOrAwaitValue(
         }
     }
 
-    this.observeForever(observer)
+    observeForever(observer)
 
     try {
         afterObserve.invoke()
@@ -34,7 +35,7 @@ fun <T> LiveData<T>.getOrAwaitValue(
             throw TimeoutException("LiveData value was never set.")
         }
     } finally {
-        this.removeObserver(observer)
+        removeObserver(observer)
     }
 
     @Suppress("UNCHECKED_CAST")

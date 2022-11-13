@@ -1,13 +1,11 @@
 package seifemadhamdy.locationreminders.locationreminders.geofence.utils
 
 import android.content.res.Resources
-import com.google.android.gms.location.Geofence
 import com.google.android.gms.location.GeofenceStatusCodes
 import seifemadhamdy.locationreminders.R
 
 object GeofenceUtils {
-    const val GEOFENCE_RADIUS_IN_METERS = 100f
-    const val NEVER_EXPIRES = Geofence.NEVER_EXPIRE
+    const val GEOFENCE_CIRCULAR_REGION_RADIUS_IN_METERS = 100f
 }
 
 fun errorMessage(resources: Resources, errorCode: Int) = when (errorCode) {

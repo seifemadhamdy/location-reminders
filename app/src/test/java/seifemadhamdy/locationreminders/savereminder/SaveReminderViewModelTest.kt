@@ -35,24 +35,24 @@ class SaveReminderViewModelTest {
     private lateinit var fakeDataSource: FakeDataSource
 
     // Subject under testing
-    private lateinit var viewModel: SaveReminderViewModel
+    private lateinit var saveReminderViewModel: SaveReminderViewModel
 
     @Before
-    fun setupViewModel() {
+    fun build() {
         fakeDataSource = FakeDataSource()
-        viewModel =
+        saveReminderViewModel =
             SaveReminderViewModel(ApplicationProvider.getApplicationContext(), fakeDataSource)
     }
 
     @After
-    fun tearDown() {
+    fun destroy() {
         stopKoin()
     }
 
     @Test
-    fun validateEnteredData_EmptyTitleAndUpdateSnackBar() {
+    fun validateEnteredData_noTitleAndUpdateSnackBar() {
         assertThat(
-            viewModel.validateEnteredData(
+            saveReminderViewModel.validateEnteredData(
                 ReminderDataItem(
                     "",
                     "Have fun with your friends!",
@@ -63,32 +63,32 @@ class SaveReminderViewModelTest {
             )
         ).isFalse()
 
-        assertThat(viewModel.showSnackBarInt.getOrAwaitValue()).isEqualTo(R.string.err_enter_title)
+        assertThat(saveReminderViewModel.showSnackBarInt.getOrAwaitValue()).isEqualTo(R.string.err_enter_title)
     }
 
     @Test
-    fun validateEnteredData_EmptyLocationAndUpdateSnackBar() {
+    fun validateEnteredData_noLocationSelectedAndUpdateSnackBar() {
         assertThat(
-            viewModel.validateEnteredData(
+            saveReminderViewModel.validateEnteredData(
                 ReminderDataItem(
                     "Don't Go There",
                     "I warned you!",
-                    viewModel.getReminderSelectedLocationStrDefaultText(),
+                    saveReminderViewModel.getReminderSelectedLocationStrDefaultText(),
                     25.000932808612767,
                     -71.00004296378529
                 )
             )
         ).isFalse()
 
-        assertThat(viewModel.showSnackBarInt.getOrAwaitValue()).isEqualTo(R.string.err_select_location)
+        assertThat(saveReminderViewModel.showSnackBarInt.getOrAwaitValue()).isEqualTo(R.string.err_select_location)
     }
 
     @Test
-    fun saveReminder_showLoading() {
+    fun saveReminder_loadingStatus() {
         @Suppress("DEPRECATION")
         mainCoroutineRule.pauseDispatcher()
 
-        viewModel.saveReminder(
+        saveReminderViewModel.saveReminder(
             ReminderDataItem(
                 "Go to The Airport",
                 "Remember to say goodbyes before the lift off!",
@@ -98,9 +98,9 @@ class SaveReminderViewModelTest {
             )
         )
 
-        assertThat(viewModel.showLoading.getOrAwaitValue()).isTrue()
+        assertThat(saveReminderViewModel.showLoading.getOrAwaitValue()).isTrue()
         @Suppress("DEPRECATION")
         mainCoroutineRule.resumeDispatcher()
-        assertThat(viewModel.showLoading.getOrAwaitValue()).isFalse()
+        assertThat(saveReminderViewModel.showLoading.getOrAwaitValue()).isFalse()
     }
 }

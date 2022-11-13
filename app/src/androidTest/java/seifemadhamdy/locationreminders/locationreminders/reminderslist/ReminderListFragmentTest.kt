@@ -74,8 +74,14 @@ class ReminderListFragmentTest : AutoCloseKoinTest() {
                 )
             }
 
-            single<ReminderDataSource> { RemindersLocalRepository(get()) }
-            single { LocalDB.createRemindersDao(application) }
+            single<ReminderDataSource> {
+                RemindersLocalRepository(get())
+
+            }
+
+            single {
+                LocalDB.createRemindersDao(application)
+            }
         }
 
         // Declare a new koin module
@@ -115,7 +121,7 @@ class ReminderListFragmentTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun reminderList_DisplayedInUI(): Unit = runBlocking {
+    fun reminderList_displayedDataOnUi(): Unit = runBlocking {
         // Test the displayed data on the UI.
 
         val reminder = ReminderDTO(
@@ -138,8 +144,8 @@ class ReminderListFragmentTest : AutoCloseKoinTest() {
     }
 
     @Test
-    fun onUI_noDataDisplayed(): Unit = runBlocking {
-        // Add testing for the error messages (when there is no data)
+    fun onUi_noReminders(): Unit = runBlocking {
+        // Add testing for displaying no reminders UI when there is no data
 
         reminderDataSource.saveReminder(
             ReminderDTO(

@@ -11,18 +11,18 @@ class FakeDataSource(private var remindersList: MutableList<ReminderDTO>? = muta
 
     // Create a fake data source to act as a double to the real data source
 
-    private var shouldReturnError by Delegates.notNull<Boolean>()
+    private var shouldSimulateError by Delegates.notNull<Boolean>()
 
     // Used for controlling the behaviour of the functions in the FakeDataSource to simulate error case
-    fun setReturnError(shouldReturnError: Boolean = false) {
-        this.shouldReturnError = shouldReturnError
+    fun simulateError(shouldSimulateError: Boolean = false) {
+        this.shouldSimulateError = shouldSimulateError
     }
 
     override suspend fun getReminders(): Result<List<ReminderDTO>> {
         // Return the reminders
 
         // Return a simulated error
-        if (shouldReturnError) {
+        if (shouldSimulateError) {
             return Result.Error("Error getting reminders.")
         }
 
@@ -50,7 +50,7 @@ class FakeDataSource(private var remindersList: MutableList<ReminderDTO>? = muta
 
         return when {
             // Return a simulated error
-            shouldReturnError -> Result.Error("Reminders couldn't be found.")
+            shouldSimulateError -> Result.Error("Reminders couldn't be found.")
             // Return reminder if successful
             reminder != null -> Result.Success(reminder)
             // Return error that the reminders couldn't be found

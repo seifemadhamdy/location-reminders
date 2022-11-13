@@ -44,7 +44,7 @@ class RemindersDaoTest {
     fun closeDb() = remindersDatabase.close()
 
     @Test
-    fun saveReminder_GetById() =
+    fun saveReminder_getById() =
         @Suppress("DEPRECATION")
         runBlockingTest {
             val reminder = ReminderDTO(
@@ -69,7 +69,7 @@ class RemindersDaoTest {
 
     @Test
     @Suppress("DEPRECATION")
-    fun getAllRemindersFromDb() = runBlockingTest {
+    fun getAllReminders() = runBlockingTest {
         remindersDatabase.apply {
             reminderDao().saveReminder(
                 ReminderDTO(
@@ -108,7 +108,7 @@ class RemindersDaoTest {
 
     @Test
     @Suppress("DEPRECATION")
-    fun insertReminders_deleteAllReminders() = runBlockingTest {
+    fun saveReminders_deleteAllReminders() = runBlockingTest {
         remindersDatabase.apply {
             reminderDao().saveReminder(
                 ReminderDTO(
