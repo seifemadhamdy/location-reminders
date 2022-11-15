@@ -3,7 +3,6 @@ package seifemadhamdy.locationreminders.data
 import seifemadhamdy.locationreminders.locationreminders.data.ReminderDataSource
 import seifemadhamdy.locationreminders.locationreminders.data.dto.ReminderDTO
 import seifemadhamdy.locationreminders.locationreminders.data.dto.Result
-import kotlin.properties.Delegates
 
 // Use FakeDataSource that acts as a test double to the LocalDataSource
 class FakeDataSource(private var remindersList: MutableList<ReminderDTO>? = mutableListOf()) :
@@ -11,7 +10,7 @@ class FakeDataSource(private var remindersList: MutableList<ReminderDTO>? = muta
 
     // Create a fake data source to act as a double to the real data source
 
-    private var shouldSimulateError by Delegates.notNull<Boolean>()
+    private var shouldSimulateError = false
 
     // Used for controlling the behaviour of the functions in the FakeDataSource to simulate error case
     fun simulateError(shouldSimulateError: Boolean = false) {
